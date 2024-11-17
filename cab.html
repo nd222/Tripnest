@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cab Booking Platform</title>
+    <link rel="stylesheet" href="cab.css">
+    <style>
+        /* Make the image act as a background */
+        .background-img {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1; /* Ensure it stays behind the content */
+          object-fit: cover; /* Scale the image to cover the entire viewport */
+        }
+    
+        /* Style for the booking form */
+        .form-container {
+          background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+          width: 400px;
+          margin: 50px auto;
+          text-align: center;
+        }
+    
+        input, select, button {
+          width: calc(100% - 20px);
+          margin: 10px 0;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+        }
+    
+        button {
+          background-color: #f04a4a;
+          color: white;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+    
+        button:hover {
+          background-color: #d63a3a;
+        }
+      </style>
+    
+</head>
+<body>
+    <img src="cab bg.jpg" alt="Background Image" class="background-img">
+
+<!-- Navbar -->
+<div class="navbar">
+    <h1>CabFinder</h1>
+    <nav>
+        <a href="#">Cabs</a>
+        <a href="#">Flights</a>
+        <a href="#">Hotels</a>
+        <a href="#">Buses</a>
+        <a href="#">Offers</a>
+        <a href="#">Customer Service</a>
+        <a href="#" class="login-signup">Log in/Sign up</a>
+    </nav>
+</div>
+
+<!-- Booking Section -->
+<div class="booking-section">
+    <h2>Book Your Cab</h2>
+    <form id="booking-form">
+        
+        <!-- Trip Type Tabs -->
+        <div class="trip-type">
+            <button type="button" onclick="setTripType('oneway')" class="active">One Way</button>
+            <button type="button" onclick="setTripType('roundtrip')">Round Trip</button>
+            <button type="button" onclick="setTripType('airport')">Airport Transfer</button>
+            <button type="button" onclick="setTripType('hourly')">Hourly Rentals</button>
+        </div>
+
+        <!-- Trip Details -->
+        <div class="form-group">
+            <label for="pickup">Pick-up Location:</label>
+            <input type="text" id="pickup" placeholder="Enter pick-up location" required>
+        </div>
+
+        <div class="form-group">
+            <label for="drop">Drop-off Location:</label>
+            <input type="text" id="drop" placeholder="Enter drop-off location" required>
+        </div>
+
+        <div class="form-group">
+            <label for="date">Pick-up Date:</label>
+            <input type="date" id="date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="time">Pick-up Time:</label>
+            <input type="time" id="time" required>
+        </div>
+
+        <div class="form-group" id="return-date-group" style="display: none;">
+            <label for="return-date">Return Date:</label>
+            <input type="date" id="return-date">
+        </div>
+
+        <div class="form-group" id="return-time-group" style="display: none;">
+            <label for="return-time">Return Time:</label>
+            <input type="time" id="return-time">
+        </div>
+
+        <!-- Car Types -->
+        <div class="car-type">
+            <label for="car">Select Car Type:</label>
+            <select id="car" required>
+                <option value="Hatchback">Hatchback</option>
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="Luxury">Luxury</option>
+            </select>
+        </div>
+
+        <!-- Special Requests -->
+        <div class="options">
+            <label>Special Requests (Optional):</label>
+            <div>
+                <input type="checkbox" id="wifi" name="feature" value="WiFi">
+                <label for="wifi">WiFi</label>
+            </div>
+            <div>
+                <input type="checkbox" id="child-seat" name="feature" value="Child Seat">
+                <label for="child-seat">Child Seat</label>
+            </div>
+            <div>
+                <input type="checkbox" id="pet-friendly" name="feature" value="Pet Friendly">
+                <label for="pet-friendly">Pet Friendly</label>
+            </div>
+        </div>
+
+        <button type="button" class="search-button" onclick="searchCab()">Search</button>
+    </form>
+</div>
+
+<!-- Footer -->
+<footer>
+    &copy; 2024 CabFinder. All rights reserved.
+</footer>
+
+<script src="cab.js"></script>
+</body>
+</html>

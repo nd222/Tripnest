@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ticket-container {
+            margin: 0 auto;
+            border: 2px solid black;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 200px;
+            background-color: rgba(233, 220, 182, 0.834);
+
+        }
+
+        h2 {
+            text-align: center;
+        }
+        #rules{
+            margin-top: 80px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="ticket-container">
+            <div style="margin-left: 20px; margin-right:20px">
+                <h2>Thank You for Your Booking!</h2>
+                <p><strong>Name:</strong> <span id="userName"></span></p>
+                <p><strong>City:</strong> <span id="selectedCity" style="text-transform: uppercase;"></span></p>
+                <p><strong>Museum:</strong> <span id="selectedMuseum"></span></p>
+                <p><strong>Visitor Type:</strong> <span id="visitorType"></span></p>
+                <p><strong>Tickets:</strong> <span id="numberOfTickets"></span></p>
+                <p><strong>Date:</strong> <span id="selectedDate"></span></p>
+                <p><strong>Time:</strong> <span id="selectedTime"></span></p>
+            </div>
+            <div style="display:flex; align-items:center"> <img style="float:right; max-height: 200px; "
+                    src="photos/qr.jpg" alt=""></div>
+        </div>
+        <div id="rules">
+            <p>*No Edibles or drinks except water is allowed in the vicinity of the Museum.</p>
+            <p>*Children under 3 years of age, are free. Childen under 6 must have 50% ticket. and Children over 6 years
+                of age, must have a 100% ticket to the Museum</p>
+            <p>*Photography inside the Museum is prohibited and shall be a liable offence (leading to fines upto
+                Rs.1000/- or imprisonment upto 1 month). </p>
+            <p>*Visitors must not touch the works of art, or damage any property that doesn't belong to them. </p>
+            <p>*Running, shouting and other chaotic actions are prohibited inside the Museum vicinty. People must follow
+                the decorum of the Museum.</p>
+        </div>
+    </div>
+
+
+    <script>
+        // Retrieve data from localStorage
+        const userData = JSON.parse(localStorage.getItem('userData'));
+
+        if (userData) {
+            document.getElementById('userName').textContent = userData.userName;
+            document.getElementById('selectedCity').textContent = userData.selectedCity.replace(/_/g, ' ');
+            document.getElementById('selectedMuseum').textContent = userData.selectedMuseum.replace(/_/g, ' ').toUpperCase();
+            document.getElementById('visitorType').textContent = userData.visitorType.charAt(0).toUpperCase() + userData.visitorType.slice(1);
+            document.getElementById('numberOfTickets').textContent = userData.numberOfTickets;
+            document.getElementById('selectedDate').textContent = userData.selectedDate;
+            document.getElementById('selectedTime').textContent = userData.selectedTime;
+        } else {
+            document.body.innerHTML = '<h2>No ticket data found. Please return to the booking page.</h2>';
+        }
+    </script>
+</body>
+
+</html>
